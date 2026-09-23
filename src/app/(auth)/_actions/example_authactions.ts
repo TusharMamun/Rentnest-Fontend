@@ -57,13 +57,10 @@ export const loginAction = async (payload: IULoging) => {
       accessToken: res.data.accessToken,
       refreshToken: res.data.refreshToken,
     });
-    const decodedToken = jwt.decode(res.data.accessToken) as { exp: number } | null;
 
 
-    return {
-      success: true,
-      data: res.data,
-    };
+
+    return res
   } catch (error: unknown) {
     return {
       success: false,
@@ -127,10 +124,7 @@ export const registrationAction = async (payload: RegistrationPayload) => {
     });
 // const decodedToken = jwt.decode(login.data.accessToken) as { exp: number } | null;
    
-    return {
-      success: true,
-      message: "Registration successful",
-    };
+    return res;
 
 
    

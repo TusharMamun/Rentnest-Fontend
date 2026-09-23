@@ -3,6 +3,8 @@ import { Mail, ShieldCheck, Calendar, CheckCircle2, Sparkles } from 'lucide-reac
 import Image from 'next/image';
 import { getMe } from '@/lib/api';
 
+export const instant = false;
+
 export default async function Profile() {
   // Fetch profile on the server directly
   const response = await getMe();
