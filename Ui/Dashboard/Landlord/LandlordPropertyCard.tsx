@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, DollarSign, Trash2, Pencil, Loader2, CheckCircle2, XCircle } from "lucide-react";
+import { MapPin, DollarSign, Trash2, Pencil, Loader2, CheckCircle2, XCircle, Building2 } from "lucide-react";
 import { deletePropertyAction } from "@/src/actions/property.actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -31,7 +31,13 @@ export default function LandlordPropertyCard({ property }: { property: Property 
   return (
     <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">
       <div className="relative w-full h-44 bg-slate-100 overflow-hidden">
-        <Image src={property.image} alt={property.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" />
+        {property.image ? (
+          <Image src={property.image} alt={property.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+            <Building2 className="w-10 h-10 text-blue-300" />
+          </div>
+        )}
         <span className={`absolute top-2 left-2 text-xs font-bold px-2.5 py-1 rounded-full ${property.isAvailable === "AVAILABLE" ? "bg-emerald-500 text-white" : "bg-slate-600 text-white"}`}>
           {property.isAvailable === "AVAILABLE" ? "Available" : "Rented"}
         </span>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, DollarSign, Star } from "lucide-react";
+import { MapPin, DollarSign, Building2 } from "lucide-react";
 import type { Property } from "@/lib/type";
 
 export default function FeaturedCard({ property }: { property: Property }) {
@@ -8,7 +8,13 @@ export default function FeaturedCard({ property }: { property: Property }) {
     <Link href={`/properties/${property.id}`}
       className="group bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col">
       <div className="relative w-full h-48 overflow-hidden bg-slate-100">
-        <Image src={property.image} alt={property.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-300" />
+        {property.image ? (
+          <Image src={property.image} alt={property.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-300" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+            <Building2 className="w-10 h-10 text-blue-300" />
+          </div>
+        )}
         <div className="absolute top-3 left-3">
           <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${property.isAvailable === "AVAILABLE" ? "bg-emerald-500 text-white" : "bg-slate-500 text-white"}`}>
             {property.isAvailable === "AVAILABLE" ? "Available" : "Rented"}

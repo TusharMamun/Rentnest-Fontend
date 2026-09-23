@@ -3,7 +3,7 @@ import { getMe } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, DollarSign, Tag, CheckCircle2, ArrowLeft, Star } from "lucide-react";
+import { MapPin, DollarSign, Tag, CheckCircle2, ArrowLeft, Star, Building2 } from "lucide-react";
 import RentRequestForm from "@/Ui/Properties/RentRequestForm";
 import type { Metadata } from "next";
 
@@ -34,7 +34,13 @@ export default async function PropertyDetailPage({ params }: Props) {
 
       {/* Hero Image */}
       <div className="relative w-full h-72 md:h-96 rounded-3xl overflow-hidden bg-slate-100 shadow-lg">
-        <Image src={property.image} alt={property.title} fill sizes="100vw" className="object-cover" priority />
+        {property.image ? (
+          <Image src={property.image} alt={property.title} fill sizes="100vw" className="object-cover" priority />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+            <Building2 className="w-16 h-16 text-blue-300" />
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         <div className="absolute bottom-4 left-5">
           <span className={`text-sm font-bold px-3 py-1.5 rounded-full ${property.isAvailable === "AVAILABLE" ? "bg-emerald-500 text-white" : "bg-slate-700 text-white"}`}>

@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 import { adminGetAllProperties } from "@/lib/api";
 import type { Property } from "@/lib/type";
-import { Building2, MapPin, DollarSign, CheckCircle2, XCircle, Loader2 } from "lucide-react";
-import Image from "next/image";
+import { Building2, MapPin, DollarSign, CheckCircle2, XCircle, Loader2 } from "lucide-react";import Image from "next/image";
 
 export const metadata = { title: "All Properties | RentNest" };
 
@@ -65,7 +64,13 @@ async function PropertiesList() {
                     <td className="py-3.5 px-5">
                       <div className="flex items-center gap-3">
                         <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-slate-100 shrink-0">
-                          <Image src={p.image} alt={p.title} fill sizes="40px" className="object-cover" />
+                          {p.image ? (
+                            <Image src={p.image} alt={p.title} fill sizes="40px" className="object-cover" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-blue-50">
+                              <Building2 className="w-5 h-5 text-blue-300" />
+                            </div>
+                          )}
                         </div>
                         <div>
                           <p className="font-semibold text-slate-800 text-sm max-w-[200px] truncate">{p.title}</p>

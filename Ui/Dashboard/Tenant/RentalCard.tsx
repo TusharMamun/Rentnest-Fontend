@@ -44,7 +44,13 @@ export default function RentalCard({ rental }: { rental: RentalRequest }) {
         {/* Property Image */}
         {rental.property && (
           <div className="relative w-full sm:w-36 h-40 sm:h-auto shrink-0 bg-slate-100">
-            <Image src={rental.property.image} alt={rental.property.title} fill sizes="144px" className="object-cover" />
+            {rental.property.image ? (
+              <Image src={rental.property.image} alt={rental.property.title} fill sizes="144px" className="object-cover" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+                <Building2 className="w-8 h-8 text-blue-300" />
+              </div>
+            )}
           </div>
         )}
 
